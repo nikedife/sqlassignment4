@@ -1,0 +1,47 @@
+1. Write a SQL query to show average number of orders shipped in a day (use Orders table). 
+Select AVG(COUNT(orderNumber)) from Orders group by shippedDate;
+
+
+2. Write a SQL query to show average number of orders placed in a day.
+Select AVG(COUNT(orderNumber)) from Orders group by orderDate;
+
+ 3. Write a SQL query to show the product name with minimum MSRP (use Productstable). 
+Select productName,MIN(MSRP) from Productstable; 
+
+4. Write a SQL query to show the product name with maximum value of stockQuantity. 
+Select productName,MAX(quantityInStock) from Productstable; 
+
+
+5. Write a query to show the most ordered product Name (the product with maximum number of orders). 
+SELECT productName FROM Products as p INNER JOIN orderNumber as o ON p.`productCode` = o.`productCode` ORDER BY COUNT(`orderNumber`) DESC LIMIT 1;
+6. Write a SQL query to show the highest paying customer Name. 
+SELECT customerName FROM customers as c INNER JOIN amount as a ON c.`customerNumber` = a.`customerNumber` ORDER BY MAX(`amount`) ;
+
+
+7. Write a SQL query to show cutomerNumber, customerName of all the customers who are from Melbourne city. 
+SELECT cutomerNumber, customerName FROM customers WHERE city = ‘Melbourne city’;
+
+8. Write a SQL query to show name of all the customers whose name start with “N”. 
+SELECT customerName FROM customers WHERE customerName LIKE 'N%';
+
+9. Write a SQL query to show name of all the customers whose phone start with ‘7’ and are from city ‘LasVegas’. 
+SELECT customerName FROM customers WHERE phone LIKE '7%' and city = ‘LasVegas’;
+
+
+10. Write a SQL query to show name of all the customers whose creditLimit < 1000 and city is either “Las Vegas” or ”Nantes” or “Stavern”. 
+SELECT customerName FROM customers WHERE creditLimit<1000 and (city = ‘LasVegas’ OR city=’Nantes’ OR city=’Stavern’);
+
+11. Write a SQL query to show all the orderNumber in which quantity ordered 1000
+SELECT orderNumber  WHERE quantityOrdered = 1000;
+
+12. Write a SQL query to show all the orderNumber whose customer Name start with letter ‘N’. 
+SELECT orderNumber FROM orders as o INNER JOIN customers as c ON o.`customerNumber` = c.`customerNumber`  WHERE customerName LIKE 'N%' ;
+
+13. Write a SQL query to show all the customerName whose orders are “Disputed” in status. 
+SELECT customerName FROM customers as c INNER JOIN orders as o ON c.`customerNumber` = o.`customerNumber`  WHERE status=’Disputed’ ;
+
+14. Write a SQL query to show the customerName who made payment through cheque with checkNumber startingwith H and made payment on “2004-10-19”. 
+SELECT customerName FROM customers as c INNER JOIN payments as p ON c.`customerNumber` = p.`customerNumber` WHERE checkNumber LIKE ‘H’ and paymentDate= “2004-10-19”;
+
+15. Write a SQL query to show all the checkNumber whose amount > 1000
+SELECT checkNumber  FROM payments WHERE checkNumber > 1000;
